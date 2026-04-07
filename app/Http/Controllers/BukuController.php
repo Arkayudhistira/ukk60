@@ -24,7 +24,7 @@ class BukuController extends Controller
         return view('siswa',compact('semuabuku'));
     }
     
-
+    
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +40,8 @@ class BukuController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, buku $buku)
+    
+public function store(Request $request, buku $buku)
     {
         if (auth()->user()->role !=='admin'){
             abort(403,'maaf anda bukan admin'); //buat mendandakan jika hanya admin yang boleh masuk ,jika tidak maka akan terjadi forbidden
@@ -53,7 +54,6 @@ class BukuController extends Controller
         $buku->create($request->all()); //buat  mengirim printah dri model lalu dibuat dalam sbuah data conto0h buku->create
         return redirect()->route('buku.index');
     }
-
     /**
      * Display the specified resource.
      */
@@ -70,7 +70,8 @@ class BukuController extends Controller
         if (auth()->user()->role !=='admin'){
             abort(403,'maaf anda bukan admin');
         }
-        return redirect()->route('buku.edit'); //kembali ke diarahkan ke buku.edit
+        return view('buku.edit',compact('buku'));
+        
     }
 
     /**
@@ -81,7 +82,7 @@ class BukuController extends Controller
         if (auth()->user()->role !=='admin'){
             abort(403,'maaf anda bukan admin');
         }
-        request->validate([
+        $request->validate([
             'judul'=>'required',
             'penulis'=>'required',
             'stok'=>'required|numeric',

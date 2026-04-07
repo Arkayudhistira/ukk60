@@ -32,6 +32,7 @@ Route::post('/kembali/{id}', [App\Http\Controllers\PeminjamanController::class, 
 Route::get('/admin/peminjaman', [App\Http\Controllers\PeminjamanController::class, 'index'])->name('admin.peminjaman');
 
 Route::post('/pinjam/{id}', [App\Http\Controllers\PeminjamanController::class, 'pinjam'])->name('pinjam.buku');
+Route::get('/katalog',[SiswaController::class,'index'])->name('katalog.index');
 
 Route::get('/siswa/katalog', [App\Http\Controllers\BukuController::class, 'halamanSiswa'])->name('siswa.katalog');
 require __DIR__.'/auth.php';
